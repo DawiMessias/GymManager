@@ -74,4 +74,17 @@ header {
     grid-template-columns: 1fr 1fr;
     /* Sombra */
     box-shadow: 0px 2px 6px 20px rgb(0, 0, 0, 0.2); 
+
+    animation: up 300ms ease-out;
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transition: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+    }
 }
