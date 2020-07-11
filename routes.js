@@ -11,8 +11,13 @@ routes.get("/instructors/create", function(req, res) {
 })
 
 routes.post("/instructors", function(req, res) {
-   console.log(req.body)
-   return res.send(req.body)
+   const keys = Object.keys()
+
+   for (key of keys) {
+        if ( req.bod[keys] == "")
+            return res.send("Please, fill all fields")
+   }
+   return
 })
 
 routes.get("/members", function(req, res) {
