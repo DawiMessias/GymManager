@@ -11,6 +11,8 @@ exports.show = function(req, res) {
   if (!foundInstructor) {
     return res.send("Instructor not found!")
   }
+
+  return res.render("instructors/show", { instructor: foundInstructor })
 }
 
 exports.post = function(req, res) {
@@ -21,7 +23,7 @@ exports.post = function(req, res) {
       return res.send("Please, fill all fields")
   }
 
-  let { avatar_url, birth, name, gender } = req.body
+  let { avatar_url, birth, name, services, gender } = req.body
 
   birth = Date.parse(req.body.birth)
   const create_at = Date.now()
@@ -33,6 +35,7 @@ exports.post = function(req, res) {
     birth,
     create_at,
     name,
+    services,
     gender
   })
 
