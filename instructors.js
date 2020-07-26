@@ -56,3 +56,7 @@ exports.post = function(req, res) {
   })
   // return res.send(req.body)
 }
+
+exports.edit = function(req, res) {
+  return res.render("instructors/edit")
+}
