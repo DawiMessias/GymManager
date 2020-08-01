@@ -1,6 +1,6 @@
 const fs = require("fs")
 const data = require("./data.json")
-const { age, Date, date } = require("./utils")
+const { age, date } = require("./utils")
 
 exports.show = function(req, res) {
   const { id } = req.params
@@ -39,13 +39,13 @@ exports.post = function(req, res) {
   const id = Number(data.instructors.length + 1)
 
   data.instructors.push({
-    id,
     avatar_url,
     birth,
     create_at,
-    name,
+    id,
+    gender,
     services,
-    gender
+    name
   })
 
   fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
