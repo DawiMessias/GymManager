@@ -1,6 +1,6 @@
 const fs = require("fs")
 const data = require("./data.json")
-const { age } = require("./utils")
+const { age, Date, date } = require("./utils")
 
 exports.show = function(req, res) {
   const { id } = req.params
@@ -23,17 +23,18 @@ exports.show = function(req, res) {
   return res.render("instructors/show", { instructor })
 }
 
-exports.post = function(req, res) {
-  const keys = Object.keys(req.body)
+exports.post = function(req, res) { 
+  const keys  = Object.keys(req.body)
 
-  for(key of keys) {
-    if ( req.body[key] == "")
-      return res.send("Please, fill all fields")
+  for ( key of keys) {
+    if(req.body[key] == ""){
+      return res.send("Please, Fill all fiels")
+    }
   }
 
   let { avatar_url, birth, name, services, gender } = req.body
 
-  birth = Date.parse(req.body.birth)
+  birth = Date.parse(birth)
   const create_at = Date.now()
   const id = Number(data.instructors.length + 1)
 
@@ -54,7 +55,6 @@ exports.post = function(req, res) {
       return res.redirect("/instructors")
     
   })
-  // return res.send(req.body)
 }
 
 exports.edit = function(req, res) {
@@ -66,8 +66,13 @@ exports.edit = function(req, res) {
 
   if (!foundInstructor)  return res.send("Instructor not found!")
   
-  
-  return res.render("instructors/edit", {instructor: foundInstructor})
+  const instructor = {
+    ...foundInstructor,
+    birth: date(foundInstructor.birth)
+  }
+
+  return res.render("instructors/edit", {instructor})
 
 
 }
+
